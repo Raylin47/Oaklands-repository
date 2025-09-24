@@ -34,6 +34,7 @@ def validation():
 def purchase():
     value = ["0", "12", "15.5", "20"]
     print("that will cost", value[choice],"£")
+    print("please enter amount in integer or float values")
     while True:
      try:
        payment = float(input())
@@ -41,7 +42,6 @@ def purchase():
      except:
          print("Incorrect datatype please type integers or float numbers")
          print("that will cost", value[choice],"£")
-        
     if payment < float(value[choice]):
         print("insufficient balance")
         validation()
