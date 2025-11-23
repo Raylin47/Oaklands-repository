@@ -10,7 +10,6 @@
 # Lotus Elise = 30
 def validation(inputs):
     try:
-     int(inputs)
      return int(inputs)
     except:
      print("sorry wrong data type try again")
@@ -23,7 +22,6 @@ def validation(inputs):
 
 options = {"Lamborghini Gallardo": {"price":59, "ID":1},
            "Lamborghini Huracan": {"price":59,  "ID":2}}
-
 
 #options = {"Lamborghini Gallardo": 59, #59£
            #"Lamborghini Huracan": 59, #59£
@@ -41,15 +39,15 @@ phone_num = validation(input("Enter your phone number:"))
 print(type(phone_num), phone_num)
 NumCarsToDrive = validation(input("enter the amount of cars you'd like to drive, maximum 5:"))
 
-while NumCarsToDrive<5:
+while NumCarsToDrive>5 or 0>=NumCarsToDrive:
     print("Cannot drive more than 5 cars")
     NumCarsToDrive = validation(input("enter the amount of cars you'd like to drive, maximum 5:"))
 user_input = {1: "Lamborghini Gallardo"}
 
 CarNum = 0
 count = 0
-chosen_cars = []
-for keys, value in options.items():
+chosen_cars = {}
+for keys in options.keys():
     count += 1
     print(f"{count}.",keys)
 while CarNum < NumCarsToDrive:
@@ -58,14 +56,16 @@ while CarNum < NumCarsToDrive:
        print("there is no such an option please try again")
        continue
    else:
-        print("your choice has been accepted")
-        CarNum +=1
         for car, info in options.items():
-            if info["ID"] == CarsToDrive:
-                chosen_cars.append(car)
-                print(chosen_cars)
-            
-        print(CarNum,"your option is", CarsToDrive)
+            if car in chosen_cars:
+                print(f"Unfortunately you already have chosen {car}")
+                continue
+            elif info["ID"] == CarsToDrive:
+                print("your choice has been accepted")
+                chosen_cars.update({car:info["price"]})
+                CarNum +=1
+                print(CarNum,"your option is", CarsToDrive)
+        
 additional_laps = input("Would you like additional laps? yes/no:") #additional laps 15£
 num_aditional_laps = validation((input("enter the amount of additional laps:")))
 
