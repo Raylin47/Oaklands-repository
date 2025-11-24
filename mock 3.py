@@ -14,11 +14,18 @@ def validation(inputs):
     except:
      print("sorry wrong data type try again")
      while True:
-          try:
+           try:
               inputs = int(input())
               return inputs
-          except ValueError:
-            print("sorry wrong data type try again")
+           except ValueError:
+               print("sorry wrong data type try again")
+def CarOptions():
+    global count
+    count = 0
+    for keys in options.keys():
+     count += 1
+     print(f"{count}.",keys)
+
 
 options = {"Lamborghini Gallardo": {"price":59, "ID":1},
            "Lamborghini Huracan": {"price":59,  "ID":2}}
@@ -45,27 +52,25 @@ while NumCarsToDrive>5 or 0>=NumCarsToDrive:
 user_input = {1: "Lamborghini Gallardo"}
 
 CarNum = 0
-count = 0
 chosen_cars = {}
-for keys in options.keys():
-    count += 1
-    print(f"{count}.",keys)
+chosen_ids = []
 while CarNum < NumCarsToDrive:
+   CarOptions()
    CarsToDrive = validation(input("which of the following cars would you like to drive? please enter a number:"))
    if CarsToDrive>count or CarsToDrive<=0:
        print("there is no such an option please try again")
        continue
-   else:
-        for car, info in options.items():
-            if car in chosen_cars:
-                print(f"Unfortunately you already have chosen {car}")
-                continue
-            elif info["ID"] == CarsToDrive:
+   for ID in chosen_cars.values():
+     chosen_ids.append(ID["ID"])
+   if CarsToDrive in chosen_ids:
+           print("Error, you already have chosen that car")
+           continue
+   for car, info in options.items():
+            if info["ID"] == CarsToDrive:
                 print("your choice has been accepted")
-                chosen_cars.update({car:info["price"]})
+                chosen_cars.update({car:{"price":info["price"], "ID":info["ID"]}})
                 CarNum +=1
-                print(CarNum,"your option is", CarsToDrive)
-        
+                print("Thats your choice number", CarNum,"the option you have chosen is", CarsToDrive, car)
 additional_laps = input("Would you like additional laps? yes/no:") #additional laps 15£
 num_aditional_laps = validation((input("enter the amount of additional laps:")))
 
