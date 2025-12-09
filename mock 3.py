@@ -47,17 +47,15 @@ while NumCarsToDrive>5 or 0>=NumCarsToDrive:
 CarNum = 0
 chosen_cars = {}
 chosen_ids = []
+
 while CarNum < NumCarsToDrive:
-   CarOptions()
+   count = CarOptions()
    CarsToDrive = validation(input("which of the following cars would you like to drive? please enter a number:"))
-   if CarsToDrive>CarOptions() or CarsToDrive<=0:
+   if CarsToDrive>count or CarsToDrive<=0:
        print("there is no such an option please try again")
        continue
-   for ID in chosen_cars.values():
-     chosen_ids.append(ID["ID"])
-   if CarsToDrive in chosen_ids:
-           print("Error, you already have chosen that car")
-           continue
+   chosen_ids.append([options.keys()])
+   print(chosen_ids)
    for car, info in options.items():
             if info["ID"] == CarsToDrive:
                 print("your choice has been accepted")
@@ -79,5 +77,8 @@ while True:
      break
     else:
      print("there is no such an option please try again")
+print(f"name:{name}")
+print(f"Adress:{adress}")
+print(f"Phone number:{phone_num}")
 print(f"Total cost {result}£")
 
