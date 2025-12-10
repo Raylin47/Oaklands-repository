@@ -10,15 +10,30 @@ def digit_validation(message, Input):
        return int(Input)
      except:
          print("wrong datatype try again")
-         
+def yesNoCondition(message, Input, boolean = None):
+ while True:
+    if Input.lower() == "yes":
+        print("your choice saved as yes")
+        boolean = True
+        return boolean
+    elif Input.lower() == "no":
+        print("your choice saved as no")
+        boolean = False
+        return boolean
+    else:
+        print("input is incorrect, please type yes or no")
+        Input = input(message)
+        continue
+
+ParcelType = {"small":{"size":95, "weight":2, "price":5,},
+       "medium":{"size":150, "weight":15, "price":20,},
+       "large":{"size":450, "weight"30:, "price":30,}}
+count = 1
+ParcelsInfo = {}
 messages = {"name":"Greetings could you enter your name?:",
             "adress":"Please enter your adress:",
             "phone number":"Please enter your phone number:",
             "Parcel number":"Please enter the number of parcels to collect:",
-            "Parcel height": "Please enter height of the parcel:",
-            "Parcel length": "Please enter lenth of the parcel",
-            "Parcel width": "Please enter width of the parcel",
-            "Parcel weight":"Please enter the weight of your parcel",
             "Signature": "Do you want a signature on delivery? yes/no",
             "tracking": "Do you want a parcel tracking? yes/no"}
 
@@ -36,8 +51,15 @@ while True:
         print("you can't enter more than 6 and less than 1 parcel")
     else:
         break
-count = 1
+
 while parcels_num >= count:
-    
-    
-    
+    height = digit_validation(f"Please enter height of the parcel number {count}:",input(f"Please enter height of the parcel number {count}:"))
+    length = digit_validation(f"Please enter lenth of the parcel number {count}:",input(f"Please enter lenth of the parcel number {count}:"))
+    width = digit_validation(f"Please enter width of the parcel number {count}:",input(f"Please enter width of the parcel number {count}:"))
+    weight = digit_validation(f"Please enter the weight of your parcel number {count}:",Input = input(f"Please enter the weight of your parcel number {count}:"))
+    EnsureData = yesNoCondition(Input = input(f"Are you sure that the following data for parcel number {count} is correct? yes/no:"), message  = "Are you sure that the following data for parcel number {count} is correct?yes/no:")
+    if EnsureData == False:
+        continue
+    elif EnsureData == True:
+        ParcelsInfo.update({f"parcel {count}":{"height":height, "length":length,"width":width,"weight":weight}})
+        count = count + 1
